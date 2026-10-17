@@ -26,10 +26,10 @@ svg.i{width:20px;height:20px;fill:currentColor;flex:none}
 .top{position:sticky;top:0;z-index:20;background:rgba(242,245,239,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--sage)}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;max-width:1200px;margin:auto;padding:.6rem 1rem}
 .brand{font-weight:800;font-size:1.2rem;letter-spacing:-.01em;color:var(--deep)}
-.wa{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:999px;background:#25d366;color:#08331b;font-weight:700;font-size:.9rem;box-shadow: 0 4px 12px rgba(37,211,102,.2)}
-#menu{display:flex;gap:.5rem;overflow-x:auto;max-width:1200px;margin:auto;padding:0 1rem .65rem;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.wa{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:999px;background:#25d366;color:#08331b;font-weight:700;font-size:.9rem}
+#menu{display:flex;gap:.5rem;overflow-x:auto;max-width:1200px;margin:auto;padding:0 1rem .65rem;scrollbar-width:none}
 #menu::-webkit-scrollbar{display:none}
-#menu a{flex:none;padding:.35rem .9rem;border:1px solid var(--sage);border-radius:999px;background:#fff;color:var(--deep);font-size:.85rem;font-weight:600;transition:all .2s ease}
+#menu a{flex:none;padding:.35rem .9rem;border:1px solid var(--sage);border-radius:999px;background:#fff;color:var(--deep);font-size:.85rem;font-weight:600}
 #menu a:hover{background:var(--deep);border-color:var(--deep);color:#fff}
 
 /* Banner */
@@ -49,13 +49,14 @@ svg.i{width:20px;height:20px;fill:currentColor;flex:none}
 .wrap h2{font-weight:800;font-size:clamp(1.6rem,4.5vw,2.25rem);line-height:1.1;letter-spacing:-.02em;color:var(--deep);padding-bottom:.6rem;border-bottom:2px solid var(--deep);margin-bottom:1.25rem}
 .sub{font-weight:700;font-size:1.15rem;color:var(--pad);margin:1.75rem 0 .8rem}
 .g{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem .8rem}
-@media(min-width:700px){.g{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.75rem 1.1rem}}
+@media(min-width:700px){.g{grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.75rem 1.1rem}}
 .card{display:flex;flex-direction:column}
-.pic{display:grid;place-items:center;width:100%;aspect-ratio:1;border-radius:10px;background:#e1e8dc;color:#a8b8a0;overflow:hidden}
+.pic{display:block;width:100%;aspect-ratio:1;border-radius:10px;background:#e1e8dc;overflow:hidden}
 button.pic{cursor:zoom-in}
+button.pic:disabled{cursor:default}
 .pic img{display:block;width:100%;height:100%;object-fit:cover}
-.pic-empty{width:40%;height:40%;opacity:.5}
 .nm{margin-top:.6rem;font-weight:700;line-height:1.25}
+.nm:empty{display:none}
 dl{margin-top:.6rem;border-top:2px solid var(--deep)}
 dl div{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;padding:.4rem 0;border-bottom:1px solid var(--sage)}
 dt{font-size:.8rem;color:var(--mute)}
@@ -66,10 +67,6 @@ dd{font-weight:800;color:var(--deep)}
 .post .pic{aspect-ratio:16/10;border-radius:14px}
 .post h3{margin-top:.9rem;font-size:1.4rem;line-height:1.2;color:var(--deep)}
 .post p{color:var(--mute)}
-
-/* Botón flotante móvil */
-.wa-float{position:fixed;bottom:1.5rem;right:1.5rem;z-index:10;display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:#25d366;color:#08331b;box-shadow:0 4px 16px rgba(0,0,0,.24)}
-.wa-float svg{width:30px;height:30px}
 
 /* Pie */
 footer{background:var(--deep);color:#d9e6dc}
@@ -109,7 +106,19 @@ dialog[open]{animation:fade .18s ease-out}
     <a class="brand" href="#">Cactus Borbollón</a>
     <a class="wa" href="https://wa.me/5492617677108?text=Hola%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener"><svg class="i"><use href="#wa"/></svg>WhatsApp</a>
   </div>
-  <nav id="menu" aria-label="Categorías"></nav>
+  <nav id="menu" aria-label="Categorías">
+    <a href="#cactus">Cactus y suculentas</a>
+    <a href="#rosales">Rosales</a>
+    <a href="#interior">Plantas de interior</a>
+    <a href="#colgantes">Colgantes</a>
+    <a href="#arboles">Árboles y frutales</a>
+    <a href="#tierra">Tierra preparada</a>
+    <a href="#macetas">Macetas de barro</a>
+    <a href="#flores">Flores</a>
+    <a href="#plantines">Plantines de estación</a>
+    <a href="#portamacetas">Porta macetas</a>
+    <a href="#produccion">Nuestra producción</a>
+  </nav>
 </header>
 
 <main>
@@ -122,20 +131,502 @@ dialog[open]{animation:fade .18s ease-out}
     </div>
   </section>
 
-  <div class="aviso">Los precios varían según si es por mayor o por menor</div>
+  <h2 class="aviso">Los precios varían según si es por mayor o por menor</h2>
 
-  <div id="catalogo" class="wrap"></div>
+  <div class="wrap">
+
+    <!-- CÓMO CARGAR UN PRODUCTO
+         Imagen ...: pegá el link dentro de src="" (ej.: src="img/rosa.jpg" o un link completo)
+         Nombre ...: opcional, escribilo entre <p class="nm"> y </p>
+         Precios ..: escribí el número después del $ (Por mayor y Por menor)
+         Sumar uno : copiá un bloque <article class="card"> ... </article> y pegalo en la misma sección
+    -->
+
+    <!-- CACTUS Y SUCULENTAS -->
+    <section id="cactus">
+      <h2>Cactus y suculentas</h2>
+      <div class="g">
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <!-- ROSALES -->
+    <section id="rosales">
+      <h2>Rosales</h2>
+      <h3 class="sub">De pie</h3>
+      <div class="g">
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+      </div>
+      <h3 class="sub">Trepadoras</h3>
+      <div class="g">
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+      </div>
+      <h3 class="sub">Enredaderas</h3>
+      <div class="g">
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <!-- PLANTAS DE INTERIOR -->
+    <section id="interior">
+      <h2>Plantas de interior</h2>
+      <div class="g">
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <!-- COLGANTES -->
+    <section id="colgantes">
+      <h2>Colgantes</h2>
+      <div class="g">
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <!-- ÁRBOLES Y FRUTALES -->
+    <section id="arboles">
+      <h2>Árboles y frutales</h2>
+      <div class="g">
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <!-- TIERRA PREPARADA -->
+    <section id="tierra">
+      <h2>Tierra preparada</h2>
+      <div class="g">
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <!-- MACETAS DE BARRO -->
+    <section id="macetas">
+      <h2>Macetas de barro</h2>
+      <div class="g">
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <!-- FLORES -->
+    <section id="flores">
+      <h2>Flores</h2>
+      <div class="g">
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <!-- PLANTINES DE ESTACIÓN -->
+    <section id="plantines">
+      <h2>Plantines de estación</h2>
+      <div class="g">
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <!-- PORTA MACETAS -->
+    <section id="portamacetas">
+      <h2>Porta macetas</h2>
+      <div class="g">
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <p class="nm"></p>
+          <dl>
+            <div><dt>Por mayor</dt><dd>$ </dd></div>
+            <div><dt>Por menor</dt><dd>$ </dd></div>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <!-- NUESTRA PRODUCCIÓN -->
+    <section id="produccion">
+      <h2>Nuestra producción</h2>
+      <div class="prod">
+        <article class="post">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <h3>Árboles</h3>
+          <p>En lagares</p>
+        </article>
+        <article class="post">
+          <button class="pic" type="button" aria-label="Ampliar imagen"><img src="" alt=""></button>
+          <h3>Rosales</h3>
+          <p>En lagares</p>
+        </article>
+      </div>
+    </section>
+  </div>
 </main>
-
-<a class="wa-float" href="https://wa.me/5492617677108?text=Hola%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener" aria-label="Consultar por WhatsApp">
-  <svg class="i"><use href="#wa"/></svg>
-</a>
 
 <footer>
   <div class="ft">
     <b>Cactus Borbollón</b>
     <a href="https://www.google.com/maps/search/?api=1&amp;query=Cactus%20Borboll%C3%B3n%2C%20Mendoza" target="_blank" rel="noopener"><svg class="i"><use href="#pin"/></svg>El Borbollón, Mendoza</a>
-    <a href="https://wa.me/5492617677108" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp al 261 767-7108"><svg class="i"><use href="#wa"/></svg>261 767-7108</a>
+    <a href="https://wa.me/5492617677108" target="_blank" rel="noopener"><svg class="i"><use href="#wa"/></svg>261 767-7108</a>
   </div>
 </footer>
 
@@ -149,56 +640,20 @@ dialog[open]{animation:fade .18s ease-out}
 </dialog>
 
 <script>
-const P=(nombre="",img="",mayor="",menor="")=>({nombre,img,mayor,menor});
-
-const CATALOGO=[
-  {id:"cactus",titulo:"Cactus y suculentas",items:[P(),P(),P(),P()]},
-  {id:"rosales",titulo:"Rosales",sub:[
-    {t:"De pie",items:[P(),P(),P(),P()]},
-    {t:"Trepadoras",items:[P(),P(),P(),P()]},
-    {t:"Enredaderas",items:[P(),P(),P(),P()]}
-  ]},
-  {id:"interior",titulo:"Plantas de interior",items:[P(),P(),P(),P()]},
-  {id:"colgantes",titulo:"Colgantes",items:[P(),P(),P(),P()]},
-  {id:"arboles",titulo:"Árboles y frutales",items:[P(),P(),P(),P()]},
-  {id:"tierra",titulo:"Tierra preparada",items:[P(),P(),P(),P()]},
-  {id:"macetas",titulo:"Macetas de barro",items:[P(),P(),P(),P()]},
-  {id:"flores",titulo:"Flores",items:[P(),P(),P(),P()]},
-  {id:"plantines",titulo:"Plantines de estación",items:[P(),P(),P(),P()]},
-  {id:"portamacetas",titulo:"Porta macetas",items:[P(),P(),P(),P()]}
-];
-
-const PRODUCCION=[
-  {titulo:"Árboles",img:""},
-  {titulo:"Rosales",img:""}
-];
-
-/* ============ RENDER ============ */
 const $=id=>document.getElementById(id);
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const money=v=>v===""?"—":typeof v==="number"?"$ "+v.toLocaleString("es-AR"):esc(v);
 
-const placeholder=`<svg class="pic-empty" viewBox="0 0 120 200"><use href="#sag"/></svg>`;
+/* Sin imagen cargada: el espacio queda vacío y sin zoom. Con imagen: el alt toma el nombre. */
+document.querySelectorAll("button.pic").forEach(b=>{
+  const i=b.firstElementChild,n=b.parentNode.querySelector(".nm,h3"),ok=!!i.getAttribute("src");
+  b.disabled=!ok;
+  if(ok&&!i.alt&&n)i.alt=n.textContent.trim();
+});
 
-const pic=(src,alt)=>src
-  ?`<button class="pic" type="button" data-zoom="${esc(src)}" data-alt="${esc(alt)}" aria-label="Ampliar imagen de ${esc(alt)}"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" decoding="async"></button>`
-  :`<div class="pic" aria-hidden="true">${placeholder}</div>`;
-
-const card=p=>`<article class="card">${pic(p.img,p.nombre)}${p.nombre?`<p class="nm">${esc(p.nombre)}</p>`:""}<dl><div><dt>Por mayor</dt><dd>${money(p.mayor)}</dd></div><div><dt>Por menor</dt><dd>${money(p.menor)}</dd></div></dl></article>`;
-const grid=a=>`<div class="g">${a.map(card).join("")}</div>`;
-
-$("catalogo").innerHTML=
-  CATALOGO.map(s=>`<section id="${s.id}"><h2>${s.titulo}</h2>${s.sub?s.sub.map(g=>`<h3 class="sub">${g.t}</h3>${grid(g.items)}`).join(""):grid(s.items)}</section>`).join("")
-  +`<section id="produccion"><h2>Nuestra producción</h2><div class="prod">${PRODUCCION.map(p=>`<article class="post">${pic(p.img,p.titulo)}<h3>${p.titulo}</h3><p>En lagares</p></article>`).join("")}</div></section>`;
-
-$("menu").innerHTML=[...CATALOGO.map(s=>[s.id,s.titulo]),["produccion","Nuestra producción"]]
-  .map(([id,t])=>`<a href="#${id}">${t}</a>`).join("");
-
-/* ============ VISOR CON ZOOM ============ */
+/* ============ VISOR CON ZOOM ============
+   Abrir: tocar una imagen · Zoom: pellizcar, rueda del mouse, doble toque/clic o botones +/−
+   Mover (con zoom): arrastrar · Cerrar: ×, Esc o tocar fuera de la imagen */
 const lb=$("lb"),st=lb.querySelector(".stage"),im=st.firstElementChild,pt=new Map();
 let s=1,x=0,y=0,d0=0,mv=0,tap=0,down=null;
-
-const resetZoom=()=>{s=1;x=0;y=0;pt.clear();view();};
 
 const view=()=>{
   if(s<=1){s=1;x=0;y=0}
@@ -211,9 +666,10 @@ const zoom=k=>{s=Math.min(5,s*k);view()};
 const dist=()=>{const[a,b]=[...pt.values()];return Math.hypot(a[0]-b[0],a[1]-b[1])};
 
 document.addEventListener("click",e=>{
-  const b=e.target.closest("[data-zoom]");
-  if(!b)return;
-  im.src=b.dataset.zoom;im.alt=b.dataset.alt;resetZoom();lb.showModal();
+  const b=e.target.closest("button.pic");
+  if(!b||b.disabled)return;
+  const i=b.firstElementChild;
+  im.src=i.currentSrc||i.src;im.alt=i.alt;s=1;view();lb.showModal();
 });
 
 st.onpointerdown=e=>{
@@ -228,20 +684,15 @@ st.onpointermove=e=>{
   else if(s>1){x+=dx;y+=dy;view()}
 };
 st.onpointerup=e=>{
-  if(st.hasPointerCapture(e.pointerId)) st.releasePointerCapture(e.pointerId);
   pt.delete(e.pointerId);
   if(pt.size||mv>8)return;
   const t=Date.now();
   if(t-tap<300){tap=0;if(s>1){s=1;view()}else zoom(2.5)}
   else{tap=t;if(down===st)lb.close()}
 };
-st.onpointercancel=e=>{
-  if(st.hasPointerCapture(e.pointerId)) st.releasePointerCapture(e.pointerId);
-  pt.delete(e.pointerId);
-};
+st.onpointercancel=e=>pt.delete(e.pointerId);
 st.addEventListener("wheel",e=>{e.preventDefault();zoom(e.deltaY<0?1.2:1/1.2)},{passive:false});
 
-lb.addEventListener("close", resetZoom);
 $("x").onclick=()=>lb.close();
 lb.querySelector(".zb").onclick=e=>{const b=e.target.closest("button");if(b)zoom(b.dataset.k>0?1.5:1/1.5)};
 </script>
