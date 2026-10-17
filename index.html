@@ -1,919 +1,479 @@
 <!DOCTYPE html>
-<html lang="es">
+
+<html lang="es-AR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Torrez - Herrería Artesanal & Industrial</title>
-    <!-- FontAwesome Iconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Space Grotesk (Títulos Taller) e Inter (Lectura) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-dark: #0b0d10;
-            --bg-card: #13171f;
-            --bg-surface: #1a202c;
-            --accent-forge: #ea580c;
-            --accent-chalk: #f59e0b;
-            --accent-chalk-glow: rgba(245, 158, 11, 0.2);
-            --accent-green: #25D366;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --border-tech: #263143;
-            --font-head: 'Space Grotesk', sans-serif;
-            --font-body: 'Inter', sans-serif;
-        }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-body); }
-        
-        h1, h2, h3, h4, .price-tag, .filter-btn, .hero h1, .tech-badge {
-            font-family: var(--font-head);
-        }
+<meta charset="utf-8">
 
-        body { 
-            background-color: var(--bg-dark); 
-            color: var(--text-primary); 
-            line-height: 1.6; 
-            overflow-x: hidden;
-            background-image: radial-gradient(rgba(245, 158, 11, 0.05) 1px, transparent 0);
-            background-size: 32px 32px;
-        }
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-        /* BARRA SUPERIOR CON ESTILO DE TALLER */
-        .top-bar {
-            background: #050608;
-            padding: 12px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--border-tech);
-            font-size: 0.85rem;
-        }
-        .top-bar .location-tag { color: var(--accent-chalk); font-weight: 700; display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px; }
-        .btn-admin-login {
-            background: transparent;
-            color: var(--text-secondary);
-            border: 1px dashed var(--border-tech);
-            padding: 6px 14px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .btn-admin-login:hover { color: #fff; border-color: var(--accent-chalk); background: rgba(245, 158, 11, 0.1); }
+<title>Cactus Borbollón | Vivero en El Borbollón, Mendoza</title>
 
-        /* PANEL ADMIN */
-        #admin-panel {
-            display: none;
-            background: var(--bg-surface);
-            padding: 20px;
-            border-bottom: 3px solid var(--accent-chalk);
-            text-align: center;
-        }
-        body.admin-mode #admin-panel { display: block; }
-        
-        .admin-controls-group {
-            background: #0f1218;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border: 1px solid var(--border-tech);
-            text-align: left;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .admin-controls-group h4 { color: var(--accent-chalk); margin-bottom: 10px; font-size: 1rem; }
+<meta name="description" content="Vivero en El Borbollón, Mendoza: cactus, suculentas, rosales, plantas de interior, árboles y frutales. Venta por mayor y por menor.">
 
-        .btn-panel {
-            background: #2563eb;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: 700;
-            cursor: pointer;
-            margin: 5px;
-            font-size: 0.95rem;
-        }
+<meta name="theme-color" content="#0e2a1c">
 
-        /* HERO ESTILO HOJA DE INGENIERÍA / FORJA */
-        .hero {
-            position: relative;
-            background: linear-gradient(180deg, rgba(11, 13, 16, 0.82), rgba(11, 13, 16, 0.98)), center/cover no-repeat;
-            padding: 80px 20px 60px 20px;
-            text-align: center;
-            border-bottom: 3px solid var(--accent-chalk);
-        }
-        .hero-tag {
-            display: inline-block;
-            background: rgba(234, 88, 12, 0.15);
-            color: var(--accent-forge);
-            border: 1px solid var(--accent-forge);
-            padding: 4px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-        }
-        .hero h1 { font-size: 3.2rem; text-transform: uppercase; letter-spacing: 2px; color: #fff; margin-bottom: 14px; font-weight: 800; line-height: 1.1; }
-        .hero h1 span { color: var(--accent-chalk); }
-        .hero p { font-size: 1.15rem; color: #cbd5e1; max-width: 720px; margin: 0 auto 30px auto; font-weight: 400; line-height: 1.7; }
-        
-        .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-        .btn-primary-act {
-            background: linear-gradient(135deg, #f59e0b, #ea580c);
-            color: #000;
-            padding: 14px 28px;
-            border-radius: 8px;
-            font-weight: 800;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 6px 25px rgba(245, 158, 11, 0.35);
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .btn-primary-act:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(245, 158, 11, 0.5); }
-        .btn-maps {
-            background: #1e293b;
-            color: #f8fafc;
-            border: 1px solid var(--border-tech);
-            padding: 14px 28px;
-            border-radius: 8px;
-            font-weight: 700;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-        }
-        .btn-maps:hover { border-color: var(--accent-chalk); color: var(--accent-chalk); transform: translateY(-3px); }
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌵%3C/text%3E%3C/svg%3E">
 
-        /* BANDA DE VALOR */
-        .value-banner {
-            background: var(--bg-surface);
-            padding: 25px 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            border-bottom: 1px solid var(--border-tech);
-            text-align: center;
-        }
-        .value-card i { font-size: 2rem; color: var(--accent-chalk); margin-bottom: 10px; }
-        .value-card h4 { font-size: 1.05rem; color: #fff; margin-bottom: 4px; font-weight: 700; }
-        .value-card p { font-size: 0.88rem; color: var(--text-secondary); }
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-        /* SECCIÓN CATÁLOGO CON FILTROS DINÁMICOS */
-        .catalog-container { max-width: 1280px; margin: 50px auto; padding: 0 20px; }
-        .section-header { text-align: center; margin-bottom: 35px; }
-        .section-header h2 { font-size: 2.5rem; color: #fff; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
-        .section-header p { color: var(--accent-chalk); font-size: 1.1rem; font-weight: 600; }
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        /* FILTROS DE CATEGORÍA INTERACTIVOS */
-        .filter-wrapper {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
-        .filter-btn {
-            background: #11151c;
-            color: var(--text-secondary);
-            border: 1px solid var(--border-tech);
-            padding: 10px 22px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .filter-btn:hover, .filter-btn.active {
-            background: var(--accent-chalk);
-            color: #000;
-            border-color: var(--accent-chalk);
-            box-shadow: 0 0 15px var(--accent-chalk-glow);
-        }
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap">
 
-        /* GRID DE PRODUCTOS EN PLANO TÉCNICO */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-            gap: 30px;
-        }
-        .card {
-            background: var(--bg-card);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-tech);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
-            position: relative;
-        }
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 4px; height: 100%;
-            background: var(--border-tech);
-            transition: background 0.3s;
-        }
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent-chalk);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 20px var(--accent-chalk-glow);
-        }
-        .card:hover::before { background: var(--accent-chalk); }
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"GardenStore","name":"Cactus Borbollón","telephone":"+5492617677108","address":{"@type":"PostalAddress","addressLocality":"El Borbollón","addressRegion":"Mendoza","addressCountry":"AR"}}</script>
 
-        .card-img-container { 
-            width: 100%; 
-            height: 250px; 
-            background: #000; 
-            position: relative; 
-            cursor: pointer; 
-            overflow: hidden;
-        }
-        .card-img-container img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            transition: transform 0.5s ease;
-        }
-        .card-img-container:hover img { transform: scale(1.06); }
-        
-        .tech-badge {
-            position: absolute;
-            top: 12px; left: 12px;
-            background: rgba(11, 13, 16, 0.85);
-            color: var(--accent-chalk);
-            border: 1px solid var(--accent-chalk);
-            padding: 3px 10px;
-            border-radius: 4px;
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            backdrop-filter: blur(4px);
-        }
+<style>
 
-        .gallery-nav {
-            position: absolute;
-            bottom: 12px; left: 50%; transform: translateX(-50%);
-            display: flex; gap: 8px; background: rgba(0,0,0,0.8);
-            padding: 5px 12px; border-radius: 20px;
-            backdrop-filter: blur(4px);
-        }
-        .dot { width: 8px; height: 8px; border-radius: 50%; background: #64748b; cursor: pointer; transition: background 0.2s; }
-        .dot.active { background: var(--accent-chalk); }
+:root{--deep:#0e2a1c;--pad:#2d6a4f;--chalk:#f2f5ef;--sage:#d5ddd0;--bloom:#d81b60;--ink:#14201a;--mute:#56665c;--f:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 
-        .card-body { padding: 24px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .card h3 { font-size: 1.25rem; color: #fff; margin-bottom: 10px; font-weight: 700; font-family: var(--font-head); }
-        .card p { font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6; }
-        
-        .price-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            border-top: 1px dashed var(--border-tech);
-            padding-top: 15px;
-        }
-        .price-tag { font-size: 1.7rem; color: var(--accent-chalk); font-weight: 800; }
-        
-        .btn-wssp-card {
-            background-color: var(--accent-green);
-            color: #fff;
-            text-decoration: none;
-            padding: 12px 16px;
-            border-radius: 8px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: all 0.2s ease;
-        }
-        .btn-wssp-card:hover { opacity: 0.92; transform: translateY(-2px); }
+*{box-sizing:border-box;margin:0}
 
-        .admin-actions { display: flex; gap: 10px; margin-top: 15px; border-top: 1px solid var(--border-tech); padding-top: 15px; }
-        .btn-edit { background: #d97706; color: white; border: none; padding: 8px; border-radius: 6px; flex: 1; cursor: pointer; font-weight: 600; }
-        .btn-delete { background: #dc2626; color: white; border: none; padding: 8px; border-radius: 6px; flex: 1; cursor: pointer; font-weight: 600; }
+html{scroll-behavior:smooth;scroll-padding-top:104px}
 
-        /* SECCIÓN PROCESO */
-        .process-section { max-width: 1280px; margin: 70px auto; padding: 0 20px; }
-        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .process-card {
-            background: var(--bg-card);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-tech);
-            transition: transform 0.3s ease;
-        }
-        .process-card:hover { transform: translateY(-6px); border-color: var(--accent-chalk); }
-        .process-card img { width: 100%; height: 210px; object-fit: cover; cursor: pointer; }
-        .process-content { padding: 24px; }
-        .process-content h3 { font-size: 1.2rem; color: #fff; margin-bottom: 10px; font-weight: 700; font-family: var(--font-head); }
-        .process-content p { font-size: 0.9rem; color: var(--text-secondary); }
+body{font:16px/1.5 var(--f);color:var(--ink);background:var(--chalk);-webkit-font-smoothing:antialiased}
 
-        /* MODALES */
-        .modal {
-            display: none;
-            position: fixed;
-            top:0; left:0; width:100%; height:100%;
-            background: rgba(0, 0, 0, 0.92);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            backdrop-filter: blur(8px);
-        }
-        .modal-content {
-            background: var(--bg-card);
-            padding: 30px;
-            border-radius: 14px;
-            width: 100%;
-            max-width: 520px;
-            border: 1px solid var(--accent-chalk);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
-        }
-        .form-group { margin-bottom: 16px; }
-        .form-group label { display: block; margin-bottom: 6px; font-size: 0.9rem; color: var(--text-secondary); font-weight: 600; }
-        .form-group input, .form-group textarea {
-            width: 100%; padding: 12px; background: #0b0d10; border: 1px solid var(--border-tech); color: #fff; border-radius: 8px; font-size: 1rem;
-        }
-        .form-group input:focus, .form-group textarea:focus { border-color: var(--accent-chalk); outline: none; }
-        .form-buttons { display: flex; gap: 12px; margin-top: 20px; }
-        .btn-save { background: var(--accent-chalk); color: #000; border: none; padding: 12px; border-radius: 8px; flex: 1; font-weight: 700; cursor: pointer; font-size: 1rem; }
-        .btn-close { background: #334155; color: #fff; border: none; padding: 12px; border-radius: 8px; flex: 1; cursor: pointer; font-size: 1rem; }
+body:has(dialog[open]){overflow:hidden}
 
-        footer {
-            text-align: center;
-            padding: 50px 20px;
-            background: #050608;
-            border-top: 2px solid var(--border-tech);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-        footer a { color: var(--accent-chalk); text-decoration: none; margin: 0 12px; font-weight: 600; }
-    </style>
+a{color:inherit;text-decoration:none}
+
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+
+:focus-visible{outline:3px solid var(--bloom);outline-offset:2px}
+
+svg.i{width:20px;height:20px;fill:currentColor;flex:none}
+
+
+
+/* Cabecera */
+
+.top{position:sticky;top:0;z-index:20;background:rgba(242,245,239,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--sage)}
+
+.bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;max-width:1200px;margin:auto;padding:.6rem 1rem}
+
+.brand{font-weight:800;font-size:1.2rem;letter-spacing:-.01em;color:var(--deep)}
+
+.wa{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:999px;background:#25d366;color:#08331b;font-weight:700;font-size:.9rem}
+
+#menu{display:flex;gap:.5rem;overflow-x:auto;max-width:1200px;margin:auto;padding:0 1rem .65rem;scrollbar-width:none}
+
+#menu::-webkit-scrollbar{display:none}
+
+#menu a{flex:none;padding:.35rem .9rem;border:1px solid var(--sage);border-radius:999px;background:#fff;color:var(--deep);font-size:.85rem;font-weight:600}
+
+#menu a:hover{background:var(--deep);border-color:var(--deep);color:#fff}
+
+
+
+/* Banner */
+
+.hero{position:relative;overflow:hidden;display:grid;align-items:end;min-height:clamp(300px,54vh,540px);background:var(--deep);color:var(--chalk)}
+
+.hero .in{position:relative;z-index:1;width:100%;max-width:1200px;margin:auto;padding:2rem 1rem 2.25rem}
+
+.hero h1{font-weight:800;font-size:clamp(3rem,13vw,8.5rem);line-height:.9;letter-spacing:-.035em}
+
+.hero p{margin-top:1rem;font-size:clamp(1.1rem,3.4vw,1.7rem);font-weight:600;color:#b7e4c7}
+
+.cac{position:absolute;bottom:-10px;color:#1c4a33}
+
+.c1{right:1%;height:98%}
+
+.c2{right:34%;height:56%}
+
+@media(max-width:700px){.c2{display:none}}
+
+.aviso{padding:1.25rem 1rem;text-align:center;background:var(--bloom);color:#fff;font-weight:700;font-size:clamp(1.15rem,3.4vw,1.75rem);line-height:1.25;text-wrap:balance}
+
+
+
+/* Catálogo */
+
+.wrap{max-width:1200px;margin:auto;padding:0 1rem 1rem}
+
+.wrap>section{padding-top:2.75rem}
+
+.wrap h2{font-weight:800;font-size:clamp(1.6rem,4.5vw,2.25rem);line-height:1.1;letter-spacing:-.02em;color:var(--deep);padding-bottom:.6rem;border-bottom:2px solid var(--deep);margin-bottom:1.25rem}
+
+.sub{font-weight:700;font-size:1.15rem;color:var(--pad);margin:1.75rem 0 .8rem}
+
+.g{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem .8rem}
+
+@media(min-width:700px){.g{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.75rem 1.1rem}}
+
+.card{display:flex;flex-direction:column}
+
+.pic{display:block;width:100%;aspect-ratio:1;border-radius:10px;background:#e1e8dc;overflow:hidden}
+
+button.pic{cursor:zoom-in}
+
+.pic img{display:block;width:100%;height:100%;object-fit:cover}
+
+.nm{margin-top:.6rem;font-weight:700;line-height:1.25}
+
+dl{margin-top:.6rem;border-top:2px solid var(--deep)}
+
+dl div{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;padding:.4rem 0;border-bottom:1px solid var(--sage)}
+
+dt{font-size:.8rem;color:var(--mute)}
+
+dd{font-weight:800;color:var(--deep)}
+
+
+
+/* Producción */
+
+.prod{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:1.5rem;padding-bottom:3rem}
+
+.post .pic{aspect-ratio:16/10;border-radius:14px}
+
+.post h3{margin-top:.9rem;font-size:1.4rem;line-height:1.2;color:var(--deep)}
+
+.post p{color:var(--mute)}
+
+
+
+/* Pie */
+
+footer{background:var(--deep);color:#d9e6dc}
+
+.ft{max-width:1200px;margin:auto;padding:1.75rem 1rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.9rem 2rem}
+
+.ft b{font-weight:800;font-size:1.2rem;color:#fff}
+
+.ft a{display:inline-flex;align-items:center;gap:.5rem}
+
+.ft a:hover{color:#fff;text-decoration:underline}
+
+
+
+/* Visor de imágenes */
+
+dialog{inset:0;margin:0;border:0;padding:0;width:100%;height:100%;max-width:none;max-height:none;overflow:hidden;background:rgba(8,14,10,.96);color:#fff}
+
+dialog::backdrop{background:rgba(8,14,10,.96)}
+
+dialog[open]{animation:fade .18s ease-out}
+
+@keyframes fade{from{opacity:0}}
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}dialog[open]{animation:none}}
+
+.stage{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden;touch-action:none}
+
+.stage img{max-width:100vw;max-height:100dvh;object-fit:contain;transform-origin:center;user-select:none;-webkit-user-drag:none}
+
+.lbtn{position:absolute;z-index:2;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.16);font-size:1.6rem;line-height:1;color:#fff}
+
+.lbtn:hover{background:rgba(255,255,255,.28)}
+
+#x{top:max(.75rem,env(safe-area-inset-top));right:.75rem}
+
+.zb{position:absolute;z-index:2;bottom:max(1rem,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;gap:.6rem}
+
+.zb .lbtn{position:static}
+
+</style>
+
 </head>
+
 <body>
 
-    <div class="top-bar">
-        <span class="location-tag"><i class="fa-solid fa-location-dot"></i> El Borbollón, Las Heras, Mendoza</span>
-        <button class="btn-admin-login" onclick="toggleAdminLogin()"><i class="fa-solid fa-lock"></i> Panel Admin</button>
-    </div>
 
-    <!-- PANEL ADMIN -->
-    <div id="admin-panel">
-        <div class="admin-controls-group">
-            <h4><i class="fa-solid fa-image"></i> Cambiar Imagen del Banner Principal</h4>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <input type="text" id="inputBannerUrl" placeholder="Pegá el Enlace Directo aquí..." style="flex: 1; padding: 10px; background: #0b0d10; border: 1px solid var(--border-tech); color: #fff; border-radius: 8px; min-width: 220px;">
-                <button class="btn-panel" style="background: var(--accent-chalk); color:#000;" onclick="guardarBannerDirecto()">Guardar Banner</button>
-            </div>
-        </div>
 
-        <div>
-            <button class="btn-panel" style="background:#10b981;" onclick="openAddModal()"><i class="fa-solid fa-plus"></i> Agregar Nuevo Producto</button>
-        </div>
-    </div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
 
-    <!-- HERO -->
-    <section class="hero" id="heroSection">
-        <span class="hero-tag"><i class="fa-solid fa-hammer"></i> Fabricación Artesanal</span>
-        <h1>Torrez <span>Herrería</span></h1>
-        <p>Construcciones sólidas en hierro macizo y caño estructural. Parrillas reforzadas, soportes de jardín y organizadores de alta durabilidad.</p>
-        <div class="hero-buttons">
-            <a href="https://wa.me/5492617677108?text=Hola%20Leonel,%20quiero%20consultar%20por%20un%20presupuesto" target="_blank" class="btn-primary-act">
-                <i class="fa-brands fa-whatsapp" style="font-size:1.3rem;"></i> Consultar Presupuesto
-            </a>
-            <a href="https://www.google.com/maps/search/?api=1&query=Vivero+Cactus+Borbollon+Mendoza" target="_blank" class="btn-maps">
-                <i class="fa-solid fa-location-dot"></i> Ver en Google Maps
-            </a>
-        </div>
-    </section>
+<symbol id="wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
 
-    <!-- BANDA DE VALOR -->
-    <section class="value-banner">
-        <div class="value-card">
-            <i class="fa-solid fa-truck-fast"></i>
-            <h4>Envíos A Domicilio</h4>
-            <p>Despachos cercanos en Las Heras y Gran Mendoza.</p>
-        </div>
-        <div class="value-card">
-            <i class="fa-solid fa-shield-halved"></i>
-            <h4>Trabajo A Conciencia</h4>
-            <p>Hierro de buen espesor y soldadura sólida.</p>
-        </div>
-        <div class="value-card">
-            <i class="fa-solid fa-store"></i>
-            <h4>Punto de Retiro</h4>
-            <p>Atención directa en El Borbollón (Vivero Cactus).</p>
-        </div>
-    </section>
+<symbol id="pin" viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></symbol>
 
-    <!-- CATÁLOGO CON FILTROS DINÁMICOS -->
-    <section class="catalog-container">
-        <div class="section-header">
-            <h2>Catálogo de Trabajos</h2>
-            <p>Seleccioná una categoría para explorar nuestros diseños</p>
-        </div>
+<symbol id="sag" viewBox="0 0 120 200">
 
-        <!-- BOTONES DE FILTRADO -->
-        <div class="filter-wrapper">
-            <button class="filter-btn active" onclick="filterCatalog('todos', this)">Todos</button>
-            <button class="filter-btn" onclick="filterCatalog('parrillas', this)">Parrillas y Fuegos</button>
-            <button class="filter-btn" onclick="filterCatalog('jardin', this)">Jardín y Plantas</button>
-            <button class="filter-btn" onclick="filterCatalog('hogar', this)">Hogar y Percheros</button>
-        </div>
+<path d="M60 190V45M60 140H28V96M60 118H92V76" fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
 
-        <div class="grid" id="productGrid"></div>
-    </section>
+<g fill="#d81b60"><circle cx="60" cy="30" r="11"/><circle cx="28" cy="80" r="9"/><circle cx="92" cy="60" r="9"/></g>
 
-    <!-- PROCESO DE FABRICACIÓN -->
-    <section class="process-section">
-        <div class="section-header">
-            <h2>Dedicación y Resistencia</h2>
-            <p>Cómo fabricamos cada pieza en nuestro taller</p>
-        </div>
+</symbol>
 
-        <div class="process-grid" id="processGrid"></div>
-    </section>
+</svg>
 
-    <!-- MODAL VISOR LIGHTBOX -->
-    <div class="modal" id="imageModal" onclick="closeModal('imageModal')">
-        <div style="text-align:center; max-width:95%; max-height:95vh; position:relative;" onclick="event.stopPropagation()">
-            <span onclick="closeModal('imageModal')" style="position:absolute; top:-20px; right:-20px; background:var(--accent-chalk); color:#000; width:38px; height:38px; border-radius:50%; display:flex; justify-content:center; align-items:center; font-weight:bold; cursor:pointer; font-size:1.3rem; box-shadow:0 4px 15px rgba(0,0,0,0.6);">×</span>
-            <img id="expandedImg" src="" style="max-width:100%; max-height:85vh; border-radius:10px; box-shadow:0 15px 50px rgba(0,0,0,0.9); border: 2px solid var(--accent-chalk); object-fit: contain;">
-            <p style="color: var(--text-secondary); margin-top: 15px; font-size: 0.95rem;"><i class="fa-solid fa-magnifying-glass"></i> Tocá en cualquier lado para cerrar</p>
-        </div>
-    </div>
 
-    <!-- MODAL LOGIN -->
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <h3 style="margin-bottom:18px; color:#fff;">Acceso Administrador</h3>
-            <div class="form-group">
-                <label>Contraseña:</label>
-                <input type="password" id="adminPassword" placeholder="Clave de administración">
-            </div>
-            <div class="form-buttons">
-                <button class="btn-save" onclick="loginAdmin()">Ingresar</button>
-                <button class="btn-close" onclick="closeModal('loginModal')">Cancelar</button>
-            </div>
-        </div>
-    </div>
 
-    <!-- MODAL PRODUCTO -->
-    <div class="modal" id="productModal">
-        <div class="modal-content">
-            <h3 id="modalTitle" style="margin-bottom:18px; color:#fff;">Publicación</h3>
-            <input type="hidden" id="prodIndex">
-            <div class="form-group">
-                <label>Título del producto:</label>
-                <input type="text" id="prodName">
-            </div>
-            <div class="form-group">
-                <label>Categoría:</label>
-                <select id="prodCategory" style="width:100%; padding:12px; background:#0b0d10; border:1px solid var(--border-tech); color:#fff; border-radius:8px;">
-                    <option value="parrillas">Parrillas y Fuegos</option>
-                    <option value="jardin">Jardín y Plantas</option>
-                    <option value="hogar">Hogar y Percheros</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Precio ($):</label>
-                <input type="number" id="prodPrice">
-            </div>
-            <div class="form-group">
-                <label>Descripción / Detalles técnicos:</label>
-                <textarea id="prodDesc" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label>URLs de Fotos (separadas por coma):</label>
-                <input type="text" id="prodImg">
-            </div>
-            <div class="form-buttons">
-                <button class="btn-save" onclick="saveProduct()">Guardar</button>
-                <button class="btn-close" onclick="closeModal('productModal')">Cancelar</button>
-            </div>
-        </div>
-    </div>
+<header class="top">
 
-    <!-- MODAL EDITAR PASO DE PROCESO -->
-    <div class="modal" id="processModal">
-        <div class="modal-content">
-            <h3 style="margin-bottom:18px; color:#fff;">Editar Paso de Fabricación</h3>
-            <input type="hidden" id="processIndex">
-            <div class="form-group">
-                <label>Título del Paso:</label>
-                <input type="text" id="processTitle">
-            </div>
-            <div class="form-group">
-                <label>Descripción:</label>
-                <textarea id="processDesc" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label>URL de la Foto:</label>
-                <input type="text" id="processImg">
-            </div>
-            <div class="form-buttons">
-                <button class="btn-save" onclick="saveProcessStep()">Guardar Paso</button>
-                <button class="btn-close" onclick="closeModal('processModal')">Cancelar</button>
-            </div>
-        </div>
-    </div>
+<div class="bar">
 
-    <footer>
-        <p><strong>Torrez - Herrería Artesanal & Industrial</strong> © 2026</p>
-        <p>El Borbollón, Las Heras, Mendoza, Argentina</p>
-        <div style="margin-top:18px;">
-            <a href="https://wa.me/5492617677108" target="_blank"><i class="fa-brands fa-whatsapp"></i> 261 767-7108</a>
-            <a href="https://www.google.com/maps/search/?api=1&query=Vivero+Cactus+Borbollon+Mendoza" target="_blank"><i class="fa-solid fa-location-dot"></i> Ubicación en Mapas</a>
-        </div>
-    </footer>
+<a class="brand" href="#">Cactus Borbollón</a>
 
-    <script>
-        const phone = "5492617677108";
-        let isAdmin = false;
-        let currentFilter = 'todos';
+<a class="wa" href="https://wa.me/5492617677108?text=Hola%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener"><svg class="i"><use href="#wa"/></svg>WhatsApp</a>
 
-        const defaultBanner = "https://i.postimg.cc/q76pPT7V/1790305937565.png";
-        function getBanner() {
-            return localStorage.getItem('torrez_banner') || defaultBanner;
-        }
-        function aplicarBanner() {
-            document.getElementById('heroSection').style.backgroundImage = `linear-gradient(180deg, rgba(11, 13, 16, 0.82), rgba(11, 13, 16, 0.98)), url('${getBanner()}')`;
-        }
-        aplicarBanner();
+</div>
 
-        function guardarBannerDirecto() {
-            const link = document.getElementById('inputBannerUrl').value.trim();
-            if(link) {
-                localStorage.setItem('torrez_banner', link);
-                aplicarBanner();
-                alert("¡Banner actualizado con éxito!");
-                document.getElementById('inputBannerUrl').value = '';
-            } else {
-                alert("Por favor pegá un enlace válido.");
-            }
-        }
+<nav id="menu" aria-label="Categorías"></nav>
 
-        const defaultProcess = [
-            { 
-                title: "Materiales Firmes", 
-                desc: "Seleccionamos caños y hierros con el grosor adecuado para que tus estructuras no se doblen ni se deformen con el uso diario.", 
-                img: "https://i.ibb.co/zHCksWpG/52803-1.webp" 
-            },
-            { 
-                title: "Soldadura Sólida", 
-                desc: "Uniones fuertes y bien armadas, buscando siempre la máxima firmeza y resistencia en cada pieza que fabricamos.", 
-                img: "https://i.postimg.cc/q76pPT7V/1790305937565.png" 
-            },
-            { 
-                title: "Protección Anticorrosiva", 
-                desc: "Tratamiento con convertidor de óxido y pintura sintética para cuidar el metal del sol y la humedad del exterior.", 
-                img: "https://i.ibb.co/27q40NQ8/20261012-152434.jpg" 
-            }
-        ];
+</header>
 
-        function getProcess() {
-            const stored = localStorage.getItem('torrez_process');
-            return stored ? JSON.parse(stored) : defaultProcess;
-        }
 
-        function renderProcess() {
-            const steps = getProcess();
-            const grid = document.getElementById('processGrid');
-            grid.innerHTML = '';
 
-            steps.forEach((step, index) => {
-                grid.innerHTML += `
-                    <div class="process-card">
-                        <img src="${step.img}" alt="${step.title}" loading="lazy" onclick="openImageModal('${step.img}')">
-                        <div class="process-content">
-                            <h3>${step.title}</h3>
-                            <p>${step.desc}</p>
-                            ${isAdmin ? `
-                                <div style="margin-top: 15px; border-top: 1px solid var(--border-tech); padding-top: 12px;">
-                                    <button class="btn-edit" onclick="openEditProcess(${index})"><i class="fa-solid fa-pen"></i> Editar Paso</button>
-                                </div>
-                            ` : ''}
-                        </div>
-                    </div>`;
-            });
-        }
+<main>
 
-        // TUS 14 PRODUCTOS CON CATEGORÍAS ASIGNADAS Y TAGS
-        const initialProducts = [
-            { 
-                name: "Parrilla de Hierro Reforzada 60X40",
-                category: "parrillas",
-                badge: "REFORZADA",
-                price: 40000, 
-                desc: "Construida en hierro macizo y caño estructural reforzado. Excelente disipación de calor y alta durabilidad.",
-                img: "https://i.ibb.co/Vcm0prCz/20261014-101301.jpg" 
-            },
-            { 
-                name: "Porta Maceta Nórdico (3 Pies) N10",
-                category: "jardin",
-                badge: "NÓRDICO",
-                price: 9000, 
-                desc: "Estructura metálica con tres apoyos estables. Tratamiento sintético rojo/blanco satinado.",
-                img: "https://i.ibb.co/qMZNxpkf/received-1062915786526454.jpg,https://i.ibb.co/b5LNKDKQ/received-2324787148333711.jpg,https://i.ibb.co/TBNCkH0Z/received-2085154365427616.jpg" 
-            },
-            { 
-                name: "Parrilla Estilo Industrial 70X50",
-                category: "parrillas",
-                badge: "PROFESIONAL",
-                price: 80000, 
-                desc: "Parrilla profesional de ángulo, hierro liso y metal desplegado.",
-                img: "https://i.ibb.co/27RHcZhY/8429b61ed4c705bbb773157a98c48199.jpg" 
-            },
-            {
-                name: "Carretilla Grande para 3 Macetas (N°17)", 
-                category: "jardin",
-                badge: "INSIGNIA",
-                price: 34999, 
-                desc: "Porta macetas grande en hierro aletado reforzado con espacio para 3 plantas Nª17, de 1 m de largo. Pintura anticorrosiva satinada.", 
-                img: "https://i.ibb.co/8Lb9TwhS/20261014-101322.jpg,https://i.ibb.co/xS5bDz1T/20261014-101317.jpg" 
-            },
-            { 
-                name: "Perchero de Pie Industrial (1,80 m)", 
-                category: "hogar",
-                badge: "MACIZO 12MM",
-                price: 45000, 
-                desc: "Perchero alto de gran estabilidad fabricado en hierro liso macizo de 12 mm. Soporta camperas pesadas sin vencerse.", 
-                img: "https://i.ibb.co/9HDdw7Yt/70db3c39d18c04d4ba7a653d398c40ce.jpg" 
-            },
-            { 
-                name: "Torre Vertical para 6 Macetas Nª15 (1,70 m)", 
-                category: "jardin",
-                badge: "6 MACETAS",
-                price: 60000, 
-                desc: "Estructura vertical de gran altura para 6 macetas N°15. Aprovecha el espacio a lo alto para lucir plantas.", 
-                img: "https://i.ibb.co/WvgfFFpm/29d579be05cdac4e0e33d62036143b52.jpg" 
-            },
-            { 
-                name: "Brasero Reforzado 40x30 cm (Hierro del 8/10)", 
-                category: "parrillas",
-                badge: "ALTO CALOR",
-                price: 34999, 
-                desc: "Brasero para leña con hierro macizo del 8 y malla desplegada gruesa. Gran resistencia al calor directo.", 
-                img: "https://i.ibb.co/xqfYSp3T/1729f4b6d6a54b55f08ceeedfa373072.jpg" 
-            },
-            { 
-                name: "Porta Maceta Figura Gato (N°12)", 
-                category: "jardin",
-                badge: "ARTESANAL",
-                price: 24999, 
-                desc: "Soporte artesanal de pared en hierro con diseño de gato. Trae 2 aros para macetas N°12.", 
-                img: "https://i.ibb.co/jPCnqGV5/20261009-202607.jpg" 
-            },
-            { 
-                name: "Mini Triciclo para 3 Macetas (N°10)", 
-                category: "jardin",
-                badge: "DECORATIVO",
-                price: 11999, 
-                desc: "Soporte artesanal con curvas en hierro para 3 macetas chicas. Terminación sintética contra el sol y la lluvia.", 
-                img: "https://i.ibb.co/TD6hVhcG/20261014-101352.jpg" 
-            },
-            { 
-                name: "Perchero / Llavero Casita (6 Ganchos)", 
-                category: "hogar",
-                badge: "ORGANIZADOR",
-                price: 11999, 
-                desc: "Organizador de pared en hierro aletado con 6 ganchos firmes para llaves o trapos de cocina.", 
-                img: "https://i.ibb.co/S4dJWzfm/IMG-20261010-WA0068.jpg" 
-            },
-            { 
-                name: "Porta Maceta Flotante para centro de mesa (N°10)", 
-                category: "jardin",
-                badge: "DISEÑO MESA",
-                price: 10999, 
-                desc: "Soporte individual de hierro Nª4 con acabado anticorrosivo.", 
-                img: "https://i.ibb.co/PsLw5YkJ/20261009-204354.jpg,https://i.ibb.co/8ndHDg2T/20260927-155907.jpg,https://i.ibb.co/PZ9snzPx/20260919-224602.jpg" 
-            },
-            { 
-                name: "Porta macetas de 3 macetas Nª10", 
-                category: "jardin",
-                badge: "TRIPLE",
-                price: 12999, 
-                desc: "Soporte de hierro para decorar jardines con acabado anticorrosivo.", 
-                img: "https://i.ibb.co/ZpCM5YYQ/20261009-204754.jpg" 
-            },
-            { 
-                name: "Porta Maceta de pared para macetas (N°12,14,15)", 
-                category: "jardin",
-                badge: "PARED",
-                price: 13999, 
-                desc: "Soporte individual de hierro para colgar macetas medianas en paredes o galerías con acabado anticorrosivo.", 
-                img: "https://i.ibb.co/h1gmK3YW/20261009-203651.jpg" 
-            },
-            { 
-                name: "Porta Maceta tipo canasto para rejas macetas (N°8 o 10)", 
-                category: "jardin",
-                badge: "PARA REJAS",
-                price: 21999, 
-                desc: "Soporte tipo canasta de hierro para colocar macetas chicas en rejas con acabado anticorrosivo.", 
-                img: "https://i.ibb.co/7JYNfPR2/IMG-20260918-WA0125.jpg,https://i.ibb.co/7JFkQfdz/IMG-20260918-WA0123.jpg" 
-            }
-        ];
+<section class="hero">
 
-        function getProducts() {
-            const stored = localStorage.getItem('torrez_products');
-            return stored ? JSON.parse(stored) : initialProducts;
-        }
+<svg class="cac c2" viewBox="0 0 120 200" aria-hidden="true"><use href="#sag" width="120" height="200"/></svg>
 
-        function filterCatalog(category, btnElement) {
-            currentFilter = category;
-            
-            // Actualizar clase activa en botones
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(b => b.classList.remove('active'));
-            if(btnElement) btnElement.classList.add('active');
+<svg class="cac c1" viewBox="0 0 120 200" aria-hidden="true"><use href="#sag" width="120" height="200"/></svg>
 
-            renderProducts();
-        }
+<div class="in">
 
-        function renderProducts() {
-            const products = getProducts();
-            const grid = document.getElementById('productGrid');
-            grid.innerHTML = '';
+<h1>Cactus<br>Borbollón</h1>
 
-            const filtered = currentFilter === 'todos' 
-                ? products 
-                : products.filter(p => p.category === currentFilter);
+<p>Calidad garantizada</p>
 
-            filtered.forEach((prod, index) => {
-                const images = prod.img ? prod.img.split(',').map(s => s.trim()) : ['https://i.postimg.cc/q76pPT7V/1790305937565.png'];
-                const wsMessage = encodeURIComponent(`Hola Leonel! Me interesa el trabajo "${prod.name}" publicado en la web.`);
-                const badgeText = prod.badge || "HERRERÍA";
+</div>
 
-                let dotsHtml = '';
-                if (images.length > 1) {
-                    dotsHtml = `<div class="gallery-nav">` + 
-                        images.map((_, i) => `<div class="dot ${i===0?'active':''}" onclick="event.stopPropagation(); switchImg(${index}, ${i})"></div>`).join('') + 
-                        `</div>`;
-                }
+</section>
 
-                grid.innerHTML += `
-                    <div class="card">
-                        <div class="card-img-container" onclick="openActiveProductImg(${index})">
-                            <span class="tech-badge"><i class="fa-solid fa-gear"></i> ${badgeText}</span>
-                            <img id="img-${index}" src="${images[0]}" alt="${prod.name}" loading="lazy">
-                            ${dotsHtml}
-                        </div>
-                        <div class="card-body">
-                            <div>
-                                <h3>${prod.name}</h3>
-                                <p>${prod.desc}</p>
-                            </div>
-                            <div>
-                                <div class="price-row">
-                                    <div class="price-tag">$${Number(prod.price).toLocaleString('es-AR')}</div>
-                                </div>
-                                <a href="https://wa.me/${phone}?text=${wsMessage}" target="_blank" class="btn-wssp-card">
-                                    <i class="fa-brands fa-whatsapp" style="font-size:1.2rem;"></i> Consultar Presupuesto
-                                </a>
-                            </div>
-                            ${isAdmin ? `
-                                <div class="admin-actions">
-                                    <button class="btn-edit" onclick="openEditModal(${index})">Editar</button>
-                                    <button class="btn-delete" onclick="deleteProduct(${index})">Eliminar</button>
-                                </div>
-                            ` : ''}
-                        </div>
-                    </div>`;
-            });
-        }
 
-        function switchImg(pIdx, iIdx) {
-            const prod = getProducts()[pIdx];
-            const imgs = prod.img.split(',').map(s => s.trim());
-            document.getElementById(`img-${pIdx}`).src = imgs[iIdx];
-        }
 
-        function openActiveProductImg(pIdx) {
-            const currentImgSrc = document.getElementById(`img-${pIdx}`).src;
-            openImageModal(currentImgSrc);
-        }
+<h2 class="aviso">Los precios varían según si es por mayor o por menor</h2>
 
-        function openImageModal(url) {
-            document.getElementById('expandedImg').src = url;
-            document.getElementById('imageModal').style.display = 'flex';
-        }
 
-        function toggleAdminLogin() {
-            if(isAdmin) {
-                isAdmin = false;
-                document.body.classList.remove('admin-mode');
-                renderProducts();
-                renderProcess();
-            } else {
-                document.getElementById('loginModal').style.display = 'flex';
-            }
-        }
 
-        function loginAdmin() {
-            if(document.getElementById('adminPassword').value === 'torrez2026') {
-                isAdmin = true;
-                document.body.classList.add('admin-mode');
-                closeModal('loginModal');
-                document.getElementById('adminPassword').value = '';
-                renderProducts();
-                renderProcess();
-            } else { alert("Clave incorrecta."); }
-        }
+<div id="catalogo" class="wrap"></div>
 
-        function openAddModal() {
-            document.getElementById('modalTitle').innerText = 'Agregar Trabajo';
-            document.getElementById('prodIndex').value = '';
-            document.getElementById('prodName').value = '';
-            document.getElementById('prodPrice').value = '';
-            document.getElementById('prodDesc').value = '';
-            document.getElementById('prodImg').value = '';
-            document.getElementById('productModal').style.display = 'flex';
-        }
+</main>
 
-        function openEditModal(index) {
-            const prod = getProducts()[index];
-            document.getElementById('modalTitle').innerText = 'Editar Trabajo';
-            document.getElementById('prodIndex').value = index;
-            document.getElementById('prodName').value = prod.name;
-            document.getElementById('prodPrice').value = prod.price;
-            document.getElementById('prodDesc').value = prod.desc;
-            document.getElementById('prodImg').value = prod.img;
-            if(prod.category) document.getElementById('prodCategory').value = prod.category;
-            document.getElementById('productModal').style.display = 'flex';
-        }
 
-        function saveProduct() {
-            const index = document.getElementById('prodIndex').value;
-            const newProd = {
-                name: document.getElementById('prodName').value,
-                category: document.getElementById('prodCategory').value,
-                badge: "A MEDIDA",
-                price: document.getElementById('prodPrice').value,
-                desc: document.getElementById('prodDesc').value,
-                img: document.getElementById('prodImg').value.trim()
-            };
-            if(!newProd.name || !newProd.price) { alert("Completá título y precio."); return; }
 
-            const products = getProducts();
-            if(index === '') products.push(newProd);
-            else products[index] = newProd;
+<footer>
 
-            localStorage.setItem('torrez_products', JSON.stringify(products));
-            closeModal('productModal');
-            renderProducts();
-        }
+<div class="ft">
 
-        function deleteProduct(index) {
-            if(confirm("¿Eliminar este trabajo?")) {
-                const products = getProducts();
-                products.splice(index, 1);
-                localStorage.setItem('torrez_products', JSON.stringify(products));
-                renderProducts();
-            }
-        }
+<b>Cactus Borbollón</b>
 
-        function openEditProcess(index) {
-            const steps = getProcess();
-            const step = steps[index];
-            document.getElementById('processIndex').value = index;
-            document.getElementById('processTitle').value = step.title;
-            document.getElementById('processDesc').value = step.desc;
-            document.getElementById('processImg').value = step.img;
-            document.getElementById('processModal').style.display = 'flex';
-        }
+<a href="https://www.google.com/maps/search/?api=1&amp;query=Cactus%20Borboll%C3%B3n%2C%20Mendoza" target="_blank" rel="noopener"><svg class="i"><use href="#pin"/></svg>El Borbollón, Mendoza</a>
 
-        function saveProcessStep() {
-            const index = document.getElementById('processIndex').value;
-            const steps = getProcess();
-            steps[index] = {
-                title: document.getElementById('processTitle').value,
-                desc: document.getElementById('processDesc').value,
-                img: document.getElementById('processImg').value.trim()
-            };
-            localStorage.setItem('torrez_process', JSON.stringify(steps));
-            closeModal('processModal');
-            renderProcess();
-        }
+<a href="https://wa.me/5492617677108" target="_blank" rel="noopener"><svg class="i"><use href="#wa"/></svg>261 767-7108</a>
 
-        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-        
-        renderProducts();
-        renderProcess();
-    </script>
+</div>
+
+</footer>
+
+
+
+<dialog id="lb" aria-label="Imagen ampliada">
+
+<button id="x" class="lbtn" type="button" aria-label="Cerrar">×</button>
+
+<div class="stage"><img alt=""></div>
+
+<div class="zb">
+
+<button class="lbtn" type="button" data-k="-1" aria-label="Alejar">−</button>
+
+<button class="lbtn" type="button" data-k="1" aria-label="Acercar">+</button>
+
+</div>
+
+</dialog>
+
+
+
+<script>
+
+/* ============ CATÁLOGO ============
+
+Cada producto se escribe así:
+
+P("Nombre", "ruta/de/la/imagen.jpg", precioPorMayor, precioPorMenor)
+
+Ejemplo: P("Echeveria", "img/echeveria.jpg", 1500, 2200)
+
+El espacio de imagen queda vacío mientras img sea "".
+
+Para agregar un producto, sumá otro P() a la lista de esa sección. */
+
+const P=(nombre="",img="",mayor="",menor="")=>({nombre,img,mayor,menor});
+
+
+
+const CATALOGO=[
+
+{id:"cactus",titulo:"Cactus y suculentas",items:[P(),P(),P(),P()]},
+
+{id:"rosales",titulo:"Rosales",sub:[
+
+{t:"De pie",items:[P(),P(),P(),P()]},
+
+{t:"Trepadoras",items:[P(),P(),P(),P()]},
+
+{t:"Enredaderas",items:[P(),P(),P(),P()]}
+
+]},
+
+{id:"interior",titulo:"Plantas de interior",items:[P(),P(),P(),P()]},
+
+{id:"colgantes",titulo:"Colgantes",items:[P(),P(),P(),P()]},
+
+{id:"arboles",titulo:"Árboles y frutales",items:[P(),P(),P(),P()]},
+
+{id:"tierra",titulo:"Tierra preparada",items:[P(),P(),P(),P()]},
+
+{id:"macetas",titulo:"Macetas de barro",items:[P(),P(),P(),P()]},
+
+{id:"flores",titulo:"Flores",items:[P(),P(),P(),P()]},
+
+{id:"plantines",titulo:"Plantines de estación",items:[P(),P(),P(),P()]},
+
+{id:"portamacetas",titulo:"Porta macetas",items:[P(),P(),P(),P()]}
+
+];
+
+
+
+/* Publicaciones finales: imagen de la producción */
+
+const PRODUCCION=[
+
+{titulo:"Árboles",img:""},
+
+{titulo:"Rosales",img:""}
+
+];
+
+
+
+/* ============ RENDER ============ */
+
+const $=id=>document.getElementById(id);
+
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+const money=v=>v===""?"—":typeof v==="number"?"$ "+v.toLocaleString("es-AR"):esc(v);
+
+
+
+const pic=(src,alt)=>src
+
+?`<button class="pic" type="button" data-zoom="${esc(src)}" data-alt="${esc(alt)}" aria-label="Ampliar imagen"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" decoding="async"></button>`
+
+:`<div class="pic"></div>`;
+
+
+
+const card=p=>`<article class="card">${pic(p.img,p.nombre)}${p.nombre?`<p class="nm">${esc(p.nombre)}</p>`:""}<dl><div><dt>Por mayor</dt><dd>${money(p.mayor)}</dd></div><div><dt>Por menor</dt><dd>${money(p.menor)}</dd></div></dl></article>`;
+
+const grid=a=>`<div class="g">${a.map(card).join("")}</div>`;
+
+
+
+$("catalogo").innerHTML=
+
+CATALOGO.map(s=>`<section id="${s.id}"><h2>${s.titulo}</h2>${s.sub?s.sub.map(g=>`<h3 class="sub">${g.t}</h3>${grid(g.items)}`).join(""):grid(s.items)}</section>`).join("")
+
++`<section id="produccion"><h2>Nuestra producción</h2><div class="prod">${PRODUCCION.map(p=>`<article class="post">${pic(p.img,p.titulo)}<h3>${p.titulo}</h3><p>En lagares</p></article>`).join("")}</div></section>`;
+
+
+
+$("menu").innerHTML=[...CATALOGO.map(s=>[s.id,s.titulo]),["produccion","Nuestra producción"]]
+
+.map(([id,t])=>`<a href="#${id}">${t}</a>`).join("");
+
+
+
+/* ============ VISOR CON ZOOM ============
+
+Abrir: tocar una imagen · Zoom: pellizcar, rueda del mouse, doble toque/clic o botones +/−
+
+Mover (con zoom): arrastrar · Cerrar: ×, Esc o tocar fuera de la imagen */
+
+const lb=$("lb"),st=lb.querySelector(".stage"),im=st.firstElementChild,pt=new Map();
+
+let s=1,x=0,y=0,d0=0,mv=0,tap=0,down=null;
+
+
+
+const view=()=>{
+
+if(s<=1){s=1;x=0;y=0}
+
+const mx=im.offsetWidth*(s-1)/2,my=im.offsetHeight*(s-1)/2;
+
+x=Math.max(-mx,Math.min(mx,x));y=Math.max(-my,Math.min(my,y));
+
+im.style.transform=`translate(${x}px,${y}px) scale(${s})`;
+
+im.style.cursor=s>1?"grab":"zoom-in";
+
+};
+
+const zoom=k=>{s=Math.min(5,s*k);view()};
+
+const dist=()=>{const[a,b]=[...pt.values()];return Math.hypot(a[0]-b[0],a[1]-b[1])};
+
+
+
+document.addEventListener("click",e=>{
+
+const b=e.target.closest("[data-zoom]");
+
+if(!b)return;
+
+im.src=b.dataset.zoom;im.alt=b.dataset.alt;s=1;view();lb.showModal();
+
+});
+
+
+
+st.onpointerdown=e=>{
+
+down=e.target;st.setPointerCapture(e.pointerId);pt.set(e.pointerId,[e.clientX,e.clientY]);
+
+if(pt.size===1)mv=0;else d0=dist();
+
+};
+
+st.onpointermove=e=>{
+
+const p=pt.get(e.pointerId);if(!p)return;
+
+const dx=e.clientX-p[0],dy=e.clientY-p[1];
+
+pt.set(e.pointerId,[e.clientX,e.clientY]);mv+=Math.abs(dx)+Math.abs(dy);
+
+if(pt.size===2){const d=dist();if(d0)s=Math.min(5,Math.max(1,s*d/d0));d0=d;view()}
+
+else if(s>1){x+=dx;y+=dy;view()}
+
+};
+
+st.onpointerup=e=>{
+
+pt.delete(e.pointerId);
+
+if(pt.size||mv>8)return;
+
+const t=Date.now();
+
+if(t-tap<300){tap=0;if(s>1){s=1;view()}else zoom(2.5)}
+
+else{tap=t;if(down===st)lb.close()}
+
+};
+
+st.onpointercancel=e=>pt.delete(e.pointerId);
+
+st.addEventListener("wheel",e=>{e.preventDefault();zoom(e.deltaY<0?1.2:1/1.2)},{passive:false});
+
+
+
+$("x").onclick=()=>lb.close();
+
+lb.querySelector(".zb").onclick=e=>{const b=e.target.closest("button");if(b)zoom(b.dataset.k>0?1.5:1/1.5)};
+
+</script>
+
 </body>
-</html>
+
+</html> 
