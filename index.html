@@ -1,479 +1,249 @@
 <!DOCTYPE html>
-
 <html lang="es-AR">
-
 <head>
-
 <meta charset="utf-8">
-
 <meta name="viewport" content="width=device-width,initial-scale=1">
-
 <title>Cactus Borbollón | Vivero en El Borbollón, Mendoza</title>
-
 <meta name="description" content="Vivero en El Borbollón, Mendoza: cactus, suculentas, rosales, plantas de interior, árboles y frutales. Venta por mayor y por menor.">
-
 <meta name="theme-color" content="#0e2a1c">
-
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌵%3C/text%3E%3C/svg%3E">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
-
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap">
-
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"GardenStore","name":"Cactus Borbollón","telephone":"+5492617677108","address":{"@type":"PostalAddress","addressLocality":"El Borbollón","addressRegion":"Mendoza","addressCountry":"AR"}}</script>
-
 <style>
-
 :root{--deep:#0e2a1c;--pad:#2d6a4f;--chalk:#f2f5ef;--sage:#d5ddd0;--bloom:#d81b60;--ink:#14201a;--mute:#56665c;--f:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-
 *{box-sizing:border-box;margin:0}
-
 html{scroll-behavior:smooth;scroll-padding-top:104px}
-
 body{font:16px/1.5 var(--f);color:var(--ink);background:var(--chalk);-webkit-font-smoothing:antialiased}
-
 body:has(dialog[open]){overflow:hidden}
-
 a{color:inherit;text-decoration:none}
-
 button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
-
 :focus-visible{outline:3px solid var(--bloom);outline-offset:2px}
-
 svg.i{width:20px;height:20px;fill:currentColor;flex:none}
 
-
-
 /* Cabecera */
-
 .top{position:sticky;top:0;z-index:20;background:rgba(242,245,239,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--sage)}
-
 .bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;max-width:1200px;margin:auto;padding:.6rem 1rem}
-
 .brand{font-weight:800;font-size:1.2rem;letter-spacing:-.01em;color:var(--deep)}
-
-.wa{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:999px;background:#25d366;color:#08331b;font-weight:700;font-size:.9rem}
-
-#menu{display:flex;gap:.5rem;overflow-x:auto;max-width:1200px;margin:auto;padding:0 1rem .65rem;scrollbar-width:none}
-
+.wa{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:999px;background:#25d366;color:#08331b;font-weight:700;font-size:.9rem;box-shadow: 0 4px 12px rgba(37,211,102,.2)}
+#menu{display:flex;gap:.5rem;overflow-x:auto;max-width:1200px;margin:auto;padding:0 1rem .65rem;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 #menu::-webkit-scrollbar{display:none}
-
-#menu a{flex:none;padding:.35rem .9rem;border:1px solid var(--sage);border-radius:999px;background:#fff;color:var(--deep);font-size:.85rem;font-weight:600}
-
+#menu a{flex:none;padding:.35rem .9rem;border:1px solid var(--sage);border-radius:999px;background:#fff;color:var(--deep);font-size:.85rem;font-weight:600;transition:all .2s ease}
 #menu a:hover{background:var(--deep);border-color:var(--deep);color:#fff}
 
-
-
 /* Banner */
-
 .hero{position:relative;overflow:hidden;display:grid;align-items:end;min-height:clamp(300px,54vh,540px);background:var(--deep);color:var(--chalk)}
-
 .hero .in{position:relative;z-index:1;width:100%;max-width:1200px;margin:auto;padding:2rem 1rem 2.25rem}
-
 .hero h1{font-weight:800;font-size:clamp(3rem,13vw,8.5rem);line-height:.9;letter-spacing:-.035em}
-
 .hero p{margin-top:1rem;font-size:clamp(1.1rem,3.4vw,1.7rem);font-weight:600;color:#b7e4c7}
-
 .cac{position:absolute;bottom:-10px;color:#1c4a33}
-
 .c1{right:1%;height:98%}
-
 .c2{right:34%;height:56%}
-
 @media(max-width:700px){.c2{display:none}}
-
 .aviso{padding:1.25rem 1rem;text-align:center;background:var(--bloom);color:#fff;font-weight:700;font-size:clamp(1.15rem,3.4vw,1.75rem);line-height:1.25;text-wrap:balance}
 
-
-
 /* Catálogo */
-
 .wrap{max-width:1200px;margin:auto;padding:0 1rem 1rem}
-
 .wrap>section{padding-top:2.75rem}
-
 .wrap h2{font-weight:800;font-size:clamp(1.6rem,4.5vw,2.25rem);line-height:1.1;letter-spacing:-.02em;color:var(--deep);padding-bottom:.6rem;border-bottom:2px solid var(--deep);margin-bottom:1.25rem}
-
 .sub{font-weight:700;font-size:1.15rem;color:var(--pad);margin:1.75rem 0 .8rem}
-
 .g{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem .8rem}
-
 @media(min-width:700px){.g{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.75rem 1.1rem}}
-
 .card{display:flex;flex-direction:column}
-
-.pic{display:block;width:100%;aspect-ratio:1;border-radius:10px;background:#e1e8dc;overflow:hidden}
-
+.pic{display:grid;place-items:center;width:100%;aspect-ratio:1;border-radius:10px;background:#e1e8dc;color:#a8b8a0;overflow:hidden}
 button.pic{cursor:zoom-in}
-
 .pic img{display:block;width:100%;height:100%;object-fit:cover}
-
+.pic-empty{width:40%;height:40%;opacity:.5}
 .nm{margin-top:.6rem;font-weight:700;line-height:1.25}
-
 dl{margin-top:.6rem;border-top:2px solid var(--deep)}
-
 dl div{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;padding:.4rem 0;border-bottom:1px solid var(--sage)}
-
 dt{font-size:.8rem;color:var(--mute)}
-
 dd{font-weight:800;color:var(--deep)}
 
-
-
 /* Producción */
-
 .prod{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:1.5rem;padding-bottom:3rem}
-
 .post .pic{aspect-ratio:16/10;border-radius:14px}
-
 .post h3{margin-top:.9rem;font-size:1.4rem;line-height:1.2;color:var(--deep)}
-
 .post p{color:var(--mute)}
 
-
+/* Botón flotante móvil */
+.wa-float{position:fixed;bottom:1.5rem;right:1.5rem;z-index:10;display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:#25d366;color:#08331b;box-shadow:0 4px 16px rgba(0,0,0,.24)}
+.wa-float svg{width:30px;height:30px}
 
 /* Pie */
-
 footer{background:var(--deep);color:#d9e6dc}
-
 .ft{max-width:1200px;margin:auto;padding:1.75rem 1rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.9rem 2rem}
-
 .ft b{font-weight:800;font-size:1.2rem;color:#fff}
-
 .ft a{display:inline-flex;align-items:center;gap:.5rem}
-
 .ft a:hover{color:#fff;text-decoration:underline}
 
-
-
 /* Visor de imágenes */
-
 dialog{inset:0;margin:0;border:0;padding:0;width:100%;height:100%;max-width:none;max-height:none;overflow:hidden;background:rgba(8,14,10,.96);color:#fff}
-
 dialog::backdrop{background:rgba(8,14,10,.96)}
-
 dialog[open]{animation:fade .18s ease-out}
-
 @keyframes fade{from{opacity:0}}
-
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}dialog[open]{animation:none}}
-
 .stage{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden;touch-action:none}
-
 .stage img{max-width:100vw;max-height:100dvh;object-fit:contain;transform-origin:center;user-select:none;-webkit-user-drag:none}
-
 .lbtn{position:absolute;z-index:2;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.16);font-size:1.6rem;line-height:1;color:#fff}
-
 .lbtn:hover{background:rgba(255,255,255,.28)}
-
 #x{top:max(.75rem,env(safe-area-inset-top));right:.75rem}
-
 .zb{position:absolute;z-index:2;bottom:max(1rem,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;gap:.6rem}
-
 .zb .lbtn{position:static}
-
 </style>
-
 </head>
-
 <body>
 
-
-
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-
-<symbol id="wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
-
-<symbol id="pin" viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></symbol>
-
-<symbol id="sag" viewBox="0 0 120 200">
-
-<path d="M60 190V45M60 140H28V96M60 118H92V76" fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
-
-<g fill="#d81b60"><circle cx="60" cy="30" r="11"/><circle cx="28" cy="80" r="9"/><circle cx="92" cy="60" r="9"/></g>
-
-</symbol>
-
+  <symbol id="wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
+  <symbol id="pin" viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></symbol>
+  <symbol id="sag" viewBox="0 0 120 200">
+    <path d="M60 190V45M60 140H28V96M60 118H92V76" fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+    <g fill="#d81b60"><circle cx="60" cy="30" r="11"/><circle cx="28" cy="80" r="9"/><circle cx="92" cy="60" r="9"/></g>
+  </symbol>
 </svg>
 
-
-
 <header class="top">
-
-<div class="bar">
-
-<a class="brand" href="#">Cactus Borbollón</a>
-
-<a class="wa" href="https://wa.me/5492617677108?text=Hola%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener"><svg class="i"><use href="#wa"/></svg>WhatsApp</a>
-
-</div>
-
-<nav id="menu" aria-label="Categorías"></nav>
-
+  <div class="bar">
+    <a class="brand" href="#">Cactus Borbollón</a>
+    <a class="wa" href="https://wa.me/5492617677108?text=Hola%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener"><svg class="i"><use href="#wa"/></svg>WhatsApp</a>
+  </div>
+  <nav id="menu" aria-label="Categorías"></nav>
 </header>
 
-
-
 <main>
+  <section class="hero">
+    <svg class="cac c2" viewBox="0 0 120 200" aria-hidden="true"><use href="#sag" width="120" height="200"/></svg>
+    <svg class="cac c1" viewBox="0 0 120 200" aria-hidden="true"><use href="#sag" width="120" height="200"/></svg>
+    <div class="in">
+      <h1>Cactus<br>Borbollón</h1>
+      <p>Calidad garantizada</p>
+    </div>
+  </section>
 
-<section class="hero">
+  <div class="aviso">Los precios varían según si es por mayor o por menor</div>
 
-<svg class="cac c2" viewBox="0 0 120 200" aria-hidden="true"><use href="#sag" width="120" height="200"/></svg>
-
-<svg class="cac c1" viewBox="0 0 120 200" aria-hidden="true"><use href="#sag" width="120" height="200"/></svg>
-
-<div class="in">
-
-<h1>Cactus<br>Borbollón</h1>
-
-<p>Calidad garantizada</p>
-
-</div>
-
-</section>
-
-
-
-<h2 class="aviso">Los precios varían según si es por mayor o por menor</h2>
-
-
-
-<div id="catalogo" class="wrap"></div>
-
+  <div id="catalogo" class="wrap"></div>
 </main>
 
-
+<a class="wa-float" href="https://wa.me/5492617677108?text=Hola%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener" aria-label="Consultar por WhatsApp">
+  <svg class="i"><use href="#wa"/></svg>
+</a>
 
 <footer>
-
-<div class="ft">
-
-<b>Cactus Borbollón</b>
-
-<a href="https://www.google.com/maps/search/?api=1&amp;query=Cactus%20Borboll%C3%B3n%2C%20Mendoza" target="_blank" rel="noopener"><svg class="i"><use href="#pin"/></svg>El Borbollón, Mendoza</a>
-
-<a href="https://wa.me/5492617677108" target="_blank" rel="noopener"><svg class="i"><use href="#wa"/></svg>261 767-7108</a>
-
-</div>
-
+  <div class="ft">
+    <b>Cactus Borbollón</b>
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=Cactus%20Borboll%C3%B3n%2C%20Mendoza" target="_blank" rel="noopener"><svg class="i"><use href="#pin"/></svg>El Borbollón, Mendoza</a>
+    <a href="https://wa.me/5492617677108" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp al 261 767-7108"><svg class="i"><use href="#wa"/></svg>261 767-7108</a>
+  </div>
 </footer>
 
-
-
 <dialog id="lb" aria-label="Imagen ampliada">
-
-<button id="x" class="lbtn" type="button" aria-label="Cerrar">×</button>
-
-<div class="stage"><img alt=""></div>
-
-<div class="zb">
-
-<button class="lbtn" type="button" data-k="-1" aria-label="Alejar">−</button>
-
-<button class="lbtn" type="button" data-k="1" aria-label="Acercar">+</button>
-
-</div>
-
+  <button id="x" class="lbtn" type="button" aria-label="Cerrar">×</button>
+  <div class="stage"><img alt=""></div>
+  <div class="zb">
+    <button class="lbtn" type="button" data-k="-1" aria-label="Alejar">−</button>
+    <button class="lbtn" type="button" data-k="1" aria-label="Acercar">+</button>
+  </div>
 </dialog>
 
-
-
 <script>
-
-/* ============ CATÁLOGO ============
-
-Cada producto se escribe así:
-
-P("Nombre", "ruta/de/la/imagen.jpg", precioPorMayor, precioPorMenor)
-
-Ejemplo: P("Echeveria", "img/echeveria.jpg", 1500, 2200)
-
-El espacio de imagen queda vacío mientras img sea "".
-
-Para agregar un producto, sumá otro P() a la lista de esa sección. */
-
 const P=(nombre="",img="",mayor="",menor="")=>({nombre,img,mayor,menor});
 
-
-
 const CATALOGO=[
-
-{id:"cactus",titulo:"Cactus y suculentas",items:[P(),P(),P(),P()]},
-
-{id:"rosales",titulo:"Rosales",sub:[
-
-{t:"De pie",items:[P(),P(),P(),P()]},
-
-{t:"Trepadoras",items:[P(),P(),P(),P()]},
-
-{t:"Enredaderas",items:[P(),P(),P(),P()]}
-
-]},
-
-{id:"interior",titulo:"Plantas de interior",items:[P(),P(),P(),P()]},
-
-{id:"colgantes",titulo:"Colgantes",items:[P(),P(),P(),P()]},
-
-{id:"arboles",titulo:"Árboles y frutales",items:[P(),P(),P(),P()]},
-
-{id:"tierra",titulo:"Tierra preparada",items:[P(),P(),P(),P()]},
-
-{id:"macetas",titulo:"Macetas de barro",items:[P(),P(),P(),P()]},
-
-{id:"flores",titulo:"Flores",items:[P(),P(),P(),P()]},
-
-{id:"plantines",titulo:"Plantines de estación",items:[P(),P(),P(),P()]},
-
-{id:"portamacetas",titulo:"Porta macetas",items:[P(),P(),P(),P()]}
-
+  {id:"cactus",titulo:"Cactus y suculentas",items:[P(),P(),P(),P()]},
+  {id:"rosales",titulo:"Rosales",sub:[
+    {t:"De pie",items:[P(),P(),P(),P()]},
+    {t:"Trepadoras",items:[P(),P(),P(),P()]},
+    {t:"Enredaderas",items:[P(),P(),P(),P()]}
+  ]},
+  {id:"interior",titulo:"Plantas de interior",items:[P(),P(),P(),P()]},
+  {id:"colgantes",titulo:"Colgantes",items:[P(),P(),P(),P()]},
+  {id:"arboles",titulo:"Árboles y frutales",items:[P(),P(),P(),P()]},
+  {id:"tierra",titulo:"Tierra preparada",items:[P(),P(),P(),P()]},
+  {id:"macetas",titulo:"Macetas de barro",items:[P(),P(),P(),P()]},
+  {id:"flores",titulo:"Flores",items:[P(),P(),P(),P()]},
+  {id:"plantines",titulo:"Plantines de estación",items:[P(),P(),P(),P()]},
+  {id:"portamacetas",titulo:"Porta macetas",items:[P(),P(),P(),P()]}
 ];
-
-
-
-/* Publicaciones finales: imagen de la producción */
 
 const PRODUCCION=[
-
-{titulo:"Árboles",img:""},
-
-{titulo:"Rosales",img:""}
-
+  {titulo:"Árboles",img:""},
+  {titulo:"Rosales",img:""}
 ];
 
-
-
 /* ============ RENDER ============ */
-
 const $=id=>document.getElementById(id);
-
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-
 const money=v=>v===""?"—":typeof v==="number"?"$ "+v.toLocaleString("es-AR"):esc(v);
 
-
+const placeholder=`<svg class="pic-empty" viewBox="0 0 120 200"><use href="#sag"/></svg>`;
 
 const pic=(src,alt)=>src
-
-?`<button class="pic" type="button" data-zoom="${esc(src)}" data-alt="${esc(alt)}" aria-label="Ampliar imagen"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" decoding="async"></button>`
-
-:`<div class="pic"></div>`;
-
-
+  ?`<button class="pic" type="button" data-zoom="${esc(src)}" data-alt="${esc(alt)}" aria-label="Ampliar imagen de ${esc(alt)}"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" decoding="async"></button>`
+  :`<div class="pic" aria-hidden="true">${placeholder}</div>`;
 
 const card=p=>`<article class="card">${pic(p.img,p.nombre)}${p.nombre?`<p class="nm">${esc(p.nombre)}</p>`:""}<dl><div><dt>Por mayor</dt><dd>${money(p.mayor)}</dd></div><div><dt>Por menor</dt><dd>${money(p.menor)}</dd></div></dl></article>`;
-
 const grid=a=>`<div class="g">${a.map(card).join("")}</div>`;
 
-
-
 $("catalogo").innerHTML=
-
-CATALOGO.map(s=>`<section id="${s.id}"><h2>${s.titulo}</h2>${s.sub?s.sub.map(g=>`<h3 class="sub">${g.t}</h3>${grid(g.items)}`).join(""):grid(s.items)}</section>`).join("")
-
-+`<section id="produccion"><h2>Nuestra producción</h2><div class="prod">${PRODUCCION.map(p=>`<article class="post">${pic(p.img,p.titulo)}<h3>${p.titulo}</h3><p>En lagares</p></article>`).join("")}</div></section>`;
-
-
+  CATALOGO.map(s=>`<section id="${s.id}"><h2>${s.titulo}</h2>${s.sub?s.sub.map(g=>`<h3 class="sub">${g.t}</h3>${grid(g.items)}`).join(""):grid(s.items)}</section>`).join("")
+  +`<section id="produccion"><h2>Nuestra producción</h2><div class="prod">${PRODUCCION.map(p=>`<article class="post">${pic(p.img,p.titulo)}<h3>${p.titulo}</h3><p>En lagares</p></article>`).join("")}</div></section>`;
 
 $("menu").innerHTML=[...CATALOGO.map(s=>[s.id,s.titulo]),["produccion","Nuestra producción"]]
+  .map(([id,t])=>`<a href="#${id}">${t}</a>`).join("");
 
-.map(([id,t])=>`<a href="#${id}">${t}</a>`).join("");
-
-
-
-/* ============ VISOR CON ZOOM ============
-
-Abrir: tocar una imagen · Zoom: pellizcar, rueda del mouse, doble toque/clic o botones +/−
-
-Mover (con zoom): arrastrar · Cerrar: ×, Esc o tocar fuera de la imagen */
-
+/* ============ VISOR CON ZOOM ============ */
 const lb=$("lb"),st=lb.querySelector(".stage"),im=st.firstElementChild,pt=new Map();
-
 let s=1,x=0,y=0,d0=0,mv=0,tap=0,down=null;
 
-
+const resetZoom=()=>{s=1;x=0;y=0;pt.clear();view();};
 
 const view=()=>{
-
-if(s<=1){s=1;x=0;y=0}
-
-const mx=im.offsetWidth*(s-1)/2,my=im.offsetHeight*(s-1)/2;
-
-x=Math.max(-mx,Math.min(mx,x));y=Math.max(-my,Math.min(my,y));
-
-im.style.transform=`translate(${x}px,${y}px) scale(${s})`;
-
-im.style.cursor=s>1?"grab":"zoom-in";
-
+  if(s<=1){s=1;x=0;y=0}
+  const mx=im.offsetWidth*(s-1)/2,my=im.offsetHeight*(s-1)/2;
+  x=Math.max(-mx,Math.min(mx,x));y=Math.max(-my,Math.min(my,y));
+  im.style.transform=`translate(${x}px,${y}px) scale(${s})`;
+  im.style.cursor=s>1?"grab":"zoom-in";
 };
-
 const zoom=k=>{s=Math.min(5,s*k);view()};
-
 const dist=()=>{const[a,b]=[...pt.values()];return Math.hypot(a[0]-b[0],a[1]-b[1])};
 
-
-
 document.addEventListener("click",e=>{
-
-const b=e.target.closest("[data-zoom]");
-
-if(!b)return;
-
-im.src=b.dataset.zoom;im.alt=b.dataset.alt;s=1;view();lb.showModal();
-
+  const b=e.target.closest("[data-zoom]");
+  if(!b)return;
+  im.src=b.dataset.zoom;im.alt=b.dataset.alt;resetZoom();lb.showModal();
 });
 
-
-
 st.onpointerdown=e=>{
-
-down=e.target;st.setPointerCapture(e.pointerId);pt.set(e.pointerId,[e.clientX,e.clientY]);
-
-if(pt.size===1)mv=0;else d0=dist();
-
+  down=e.target;st.setPointerCapture(e.pointerId);pt.set(e.pointerId,[e.clientX,e.clientY]);
+  if(pt.size===1)mv=0;else d0=dist();
 };
-
 st.onpointermove=e=>{
-
-const p=pt.get(e.pointerId);if(!p)return;
-
-const dx=e.clientX-p[0],dy=e.clientY-p[1];
-
-pt.set(e.pointerId,[e.clientX,e.clientY]);mv+=Math.abs(dx)+Math.abs(dy);
-
-if(pt.size===2){const d=dist();if(d0)s=Math.min(5,Math.max(1,s*d/d0));d0=d;view()}
-
-else if(s>1){x+=dx;y+=dy;view()}
-
+  const p=pt.get(e.pointerId);if(!p)return;
+  const dx=e.clientX-p[0],dy=e.clientY-p[1];
+  pt.set(e.pointerId,[e.clientX,e.clientY]);mv+=Math.abs(dx)+Math.abs(dy);
+  if(pt.size===2){const d=dist();if(d0)s=Math.min(5,Math.max(1,s*d/d0));d0=d;view()}
+  else if(s>1){x+=dx;y+=dy;view()}
 };
-
 st.onpointerup=e=>{
-
-pt.delete(e.pointerId);
-
-if(pt.size||mv>8)return;
-
-const t=Date.now();
-
-if(t-tap<300){tap=0;if(s>1){s=1;view()}else zoom(2.5)}
-
-else{tap=t;if(down===st)lb.close()}
-
+  if(st.hasPointerCapture(e.pointerId)) st.releasePointerCapture(e.pointerId);
+  pt.delete(e.pointerId);
+  if(pt.size||mv>8)return;
+  const t=Date.now();
+  if(t-tap<300){tap=0;if(s>1){s=1;view()}else zoom(2.5)}
+  else{tap=t;if(down===st)lb.close()}
 };
-
-st.onpointercancel=e=>pt.delete(e.pointerId);
-
+st.onpointercancel=e=>{
+  if(st.hasPointerCapture(e.pointerId)) st.releasePointerCapture(e.pointerId);
+  pt.delete(e.pointerId);
+};
 st.addEventListener("wheel",e=>{e.preventDefault();zoom(e.deltaY<0?1.2:1/1.2)},{passive:false});
 
-
-
+lb.addEventListener("close", resetZoom);
 $("x").onclick=()=>lb.close();
-
 lb.querySelector(".zb").onclick=e=>{const b=e.target.closest("button");if(b)zoom(b.dataset.k>0?1.5:1/1.5)};
-
 </script>
-
 </body>
-
-</html> 
+</html>
